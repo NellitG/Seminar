@@ -1,8 +1,10 @@
-from django.urls import path
-from . import views
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import BookingViewSet
+
+router = DefaultRouter()
+router.register(r'bookings', BookingViewSet)
 
 urlpatterns = [
-    path('new/', views.booking_form, name='new_booking'),
-    path('success/', views.booking_success, name='booking_success'),
-    path('list/', views.booking_list, name='booking_list'),
+    path('', include(router.urls)),
 ]
